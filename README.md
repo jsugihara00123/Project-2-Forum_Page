@@ -65,12 +65,15 @@ As a user I WANT access to a forum where other developers ask question and discu
 <br>
 
 ---
-## Forum Wire Frame
+## Forum Wire Frames
 <br> 
+
 ![Forum Home Page](./Images/Wire_Frame_1.png)
 <br>
+
 ![Forum Page](./Images/Wire_Frame_2.png)
 <br>
+
 ![Forum Create Forum](./Images/Wire_Frame_3.png)
 <br>
 
