@@ -68,13 +68,13 @@ As a user I WANT access to a forum where other developers ask question and discu
 ## Forum Wire Frames
 <br> 
 
-![Forum Home Page](./images/Wire_Frame_1.png)
+![Forum Home Page](./assets/images/Wire_Frame_1.png)
 <br>
 
-![Forum Page](./images/Wire_Frame_2.png)
+![Forum Page](./assets/images/Wire_Frame_2.png)
 <br>
 
-![Forum Create Forum](./images/Wire_Frame_3.png)
+![Forum Create Forum](./assets/images/Wire_Frame_3.png)
 <br>
 
 ---
