@@ -3,7 +3,7 @@ const express = require("express");
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const mysql = require("mysql2");
-const routes = require("./routes");
+const routes = require("./controllers");
 const bcrypt = require('bcrypt');
 const PORT = process.env.port||3001;
 
