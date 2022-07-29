@@ -89,6 +89,10 @@ As a user I WANT access to a forum where other developers ask question and discu
 ## Forum Functionality
 <br> 
 
+- bcrypt password
+- reply to comments
+- upvote comments
+
 ---
 ## Forum Use Cases
 <br>
