@@ -1,10 +1,31 @@
 {
-    "name": "01-ins-setup",
-    "version": "1.0.0",
-    "main": "server.js",
-    "license": "MIT",
-    "dependencies": {
-        "express": "^4.17.1",
-        "express-session": "^1.17.3"
-    }
+  "name": "breddit",
+  "version": "1.0.0",
+  "main": "server.js",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-session-sequelize": "^7.1.4",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.3",
+    "session": "^0.1.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "description": "## Requirements  <br> With your team, you’ll conceive and execute a design that solves a real-world problem. In creating your first collaborative full-stack application, you’ll combine a robust back end—with servers, databases, advanced APIs, and user authentication—to an intuitive front end. You’ll continue to build on the agile development methodologies you’ve used throughout this course, like storing your project code in GitHub, managing your work with a project management tool, and implementing feature and bug fixes using the Git branch workflow and pull requests.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsugihara00123/Project-2-Forum_Page.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/jsugihara00123/Project-2-Forum_Page/issues"
+  },
+  "homepage": "https://github.com/jsugihara00123/Project-2-Forum_Page#readme"
 }

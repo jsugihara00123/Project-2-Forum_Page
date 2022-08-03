@@ -11,7 +11,17 @@ const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
-const hbs = exphbs.create({ helpers });
+var hbs = exphbs.create({
+  helpers: {
+    substr: function(length, context, options) {
+      if (context.length > length) {
+        return context.substring(0, length) + "...";
+      } else {
+        return context;
+      }
+    }
+  }
+});
 
 const sess = {
     secret: 'Super secret secret',
