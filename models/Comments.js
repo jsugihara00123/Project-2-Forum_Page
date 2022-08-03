@@ -1,13 +1,14 @@
 //Build ow the comments model JS
 
 const comments = require('../models/comments');
-const users = require('../models/users');
+const users = require('../models/user');
 const topics = require('../models/topics');
-const posts = require('../models/posts');
+// const posts = require('../models/posts');
 const sequelize = require('../config/connection');
+var DataTypes = require('sequelize/lib/data-types');
 
 //Create the comments model using the topic.id and the posts.id fields and link the comments model to the posts.id field and then get the comments for each topic.
-const comments = sequelize.define('comments', {
+const commentsPage = sequelize.define('comments', {
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -54,4 +55,4 @@ const comments = sequelize.define('comments', {
 }
 );
 
-module.exports = Comments;
+module.exports = commentsPage;
