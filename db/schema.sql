@@ -7,17 +7,17 @@ CREATE TABLE users (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user VARCHAR(30) NULL,
     password CHAR(60) BINARY,
-    user_creation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    user_creation_date DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE topics(
+CREATE TABLE topics (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
     votes INT,
     body VARCHAR(500) NOT NULL,
     topic_creation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-    created_by VARCHAR(30),
-    FOREIGN KEY(created_by) REFERENCES users(id)
+    created_by_user VARCHAR(30),
+    FOREIGN KEY(created_by_user) REFERENCES users(id)
 );
 
 CREATE TABLE comments (
