@@ -26,7 +26,7 @@ CREATE TABLE comments (
     id INT NOT NULL AUTO_INCREMENT,
     body VARCHAR(100) NOT NULL,
     comment_creation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-    userName VARCHAR(30),
+    userName INT,
     topic_Id INT NOT NULL,
     PRIMARY KEY(id),
     FOREIGN KEY(userName) REFERENCES users(id),
