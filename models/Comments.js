@@ -12,21 +12,18 @@ const commentsPage = sequelize.define('comments', {
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        primaryKey: true,
+        primaryKey:true,
         autoIncrement: true,
     },
     body: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    created_by: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        //foreignKey is from user.id in the database
-        references: {
-            model: 'users',
-            key: 'id',
-        },
+    comment_creation_date: {
+        type: DataTypes.DATE,
+        defaultValue: sequelize.fn('now')},
+    userName:{
+        type: DataTypes.INTEGER
     },
     topic_id: {
         type: DataTypes.INTEGER,
@@ -34,15 +31,6 @@ const commentsPage = sequelize.define('comments', {
         //foreignKey is from topic.id in the database
         references: {
             model: 'topics',
-            key: 'id',
-        },
-    },
-    post_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        //foreignKey is from post.id in the database
-        references: {
-            model: 'posts',
             key: 'id',
         },
     },
