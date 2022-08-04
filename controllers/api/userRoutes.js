@@ -16,17 +16,21 @@ router.post('/register', async (req, res) => {
     }
 });
 
-//Router API Endpoint /users/login to login a user and return the user object for login and the session id for the user
+//Router API Endpoint /users/login which takes in a username and password and uses bcrypt.compare to verify the password and returns a token if the user is found and the password is correct
 router.post('/login', async (req, res) => {
     try {
-        const userData = await user.findOne({
-            where: {
-                username: req.body.username,
-                password: req.body.password,
-            },
-        });
-        req.session.user_id = userData.id;
-        res.json(userData);
+        const userData = await user.findOne({ where: { username: req.body.username } });
+        if (userData) {
+            const isPasswordValid = await userData.comparePassword(req.body.password);
+            if (isPasswordValid) {
+                const token = userData.generateToken();
+                res.status(200).json({ token });
+            } else {
+                res.status(401).json({ error: 'Invalid password' });
+            }
+        } else {
+            res.status(401).json({ error: 'Invalid username' });
+        }
     } catch (err) {
         res.status(500).json(err);
     }
