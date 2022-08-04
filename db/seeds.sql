@@ -1,9 +1,8 @@
 USE breddit_db;
 
---Create test user in the users TABLE
-INSERT INTO users (id, user, password, user_creation_date) VALUES (1, 'testuser@testuser.com', 'testuserpass1234', '2020-01-01 00:00:00');
+INSERT INTO user (id, email, username, password) VALUES (1, 'testuser@testuser.com', 'usernametest' ,'testuserpass1234');
 
-INSERT INTO users (id, user, password, user_creation_date) VALUES (2, 'testuser2@testuser2.com', 'testuserpass1234', '2020-01-01 00:00:00');
+INSERT INTO user (id, email, username, password) VALUES (2, 'testuser2@testuser2.com', 'testusername', 'testuserpass1234');
 
 --Create test topic in the topics TABLE
 INSERT INTO topics (id, title, votes, body, topic_creation_date, created_by_user) VALUES (1, 'Test Topic', 0, 'This is a test topic', '2020-01-01 00:00:00', 1);
