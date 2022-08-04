@@ -21,20 +21,19 @@ router.post('/login', async (req, res) => {
     try {
         const userData = await user.findOne({ where: { username: req.body.username } });
         if (userData) {
-            const isPasswordValid = await userData.comparePassword(req.body.password);
-            if (isPasswordValid) {
-                const token = userData.generateToken();
-                res.status(200).json({ token });
-            } else {
-                res.status(401).json({ error: 'Invalid password' });
+           bcrypt.compare(userData.password, req.body.password, (err, result) => {
+                if (result) {
+                    const token = jwt.sign({ id: userData.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+                    res.json({
+                        id: userData.id,
+                        username: userData.username,
+                        token: token,
+                    });
+                } else {
+                    res.status(401).json({ message: 'Invalid Credentials' });
+                }
             }
-        } else {
-            res.status(401).json({ error: 'Invalid username' });
-        }
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
+        );
 
 //Router API Endpoint /users/logout to logout a user and return the user object for logout and end the session for the user
 router.get('/logout', async (req, res) => {
