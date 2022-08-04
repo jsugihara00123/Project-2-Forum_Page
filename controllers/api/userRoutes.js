@@ -1,61 +1,94 @@
 const router = require('express').Router();
-const { User } = require('../../models/User.js');
+const user = require('../../models/user');
 
-router.post('/login', async (req, res) => {
-  try {
-    const userData = await User.findOne({ where: { email: req.body.email } });
 
-    if (!userData) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
-      return;
-    }
-
-    const validPassword = await userData.checkPassword(req.body.password);
-
-    if (!validPassword) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
-      return;
-    }
-
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
-      
-      res.json({ user: userData, message: 'You are now logged in!' });
-    });
-
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
-
-router.post('/logout', (req, res) => {
-  if (req.session.logged_in) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
-  } else {
-    res.status(404).end();
-  }
-});
-
-//router get register to allow the user to register themselves on the site
-router.get('/register', (req, res) => {
-  res.render('register');
-});
-
-//router puts the user info from register into the database
+//Router API Endpoint /users/register to register a new user and return the user object for registration
 router.post('/register', async (req, res) => {
-  try {
-    const user = await User.create(req.body);
-    res.json(user);
-  } catch (err) {
-    res.status(400).json(err);
-  }
+    try {
+        const userData = await user.create({
+            username: req.body.username,
+            password: req.body.password,
+            email: req.body.email,
+        });
+        res.json(userData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
-module.exports = router;
+//Router API Endpoint /users/login to login a user and return the user object for login and the session id for the user
+router.post('/login', async (req, res) => {
+    try {
+        const userData = await user.findOne({
+            where: {
+                username: req.body.username,
+                password: req.body.password,
+            },
+        });
+        req.session.user_id = userData.id;
+        res.json(userData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+//Router API Endpoint /users/logout to logout a user and return the user object for logout and end the session for the user
+router.get('/logout', async (req, res) => {
+    try {
+        const userData = await user.findOne({
+            where: {
+                id: req.session.user_id,
+            },
+        });
+        req.session.destroy();
+        res.json(userData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+//Router API Endpoint /users/:id to get a user and return the user object for the user
+router.get('/:id', async (req, res) => {
+    try {
+        const userData = await user.findOne({
+            where: {
+                id: req.params.id,
+            },
+        });
+        res.json(userData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+//Router API Endpoint /users/:id to update a user and return the user object for the user
+router.put('/:id', async (req, res) => {
+    try {
+        const userData = await user.update({
+            username: req.body.username,
+            password: req.body.password,
+            email: req.body.email,
+        },
+        { where: { id: req.params.id } });
+        res.json(userData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+//Router API Endpoint /users/:id to delete a user and return the user object for the user
+router.delete('/:id', async (req, res) => {
+    try {
+        const userData = await user.destroy({
+            where: {
+                id: req.params.id,
+            },
+        });
+        res.json(userData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+//
+
