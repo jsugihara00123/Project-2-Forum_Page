@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User } = require('../../models/User.js');
 
 router.post('/login', async (req, res) => {
   try {
@@ -49,7 +49,7 @@ router.get('/register', (req, res) => {
 });
 
 //router puts the user info from register into the database
-router.put('/register', async (req, res) => {
+router.post('/register', async (req, res) => {
   try {
     const user = await User.create(req.body);
     res.json(user);

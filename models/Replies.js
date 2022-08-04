@@ -34,7 +34,7 @@ const repliesPage = sequelize.define('replies', {
         allowNull: false,
         autoIncrement: true,
     },
-    }, {
+    }, 
         sequelize,
         timestamps: false,
         freezeTableName: true,
