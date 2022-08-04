@@ -43,4 +43,19 @@ router.post('/logout', (req, res) => {
   }
 });
 
+//router get register to allow the user to register themselves on the site
+router.get('/register', (req, res) => {
+  res.render('register');
+});
+
+//router puts the user info from register into the database
+router.put('/register', async (req, res) => {
+  try {
+    const user = await User.create(req.body);
+    res.json(user);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 module.exports = router;
