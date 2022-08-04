@@ -17,7 +17,7 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    user: {
+    email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
@@ -32,7 +32,11 @@ User.init(
         len: [8],
       },
     },
-   
+    username:{
+     type: DataTypes.STRING,
+     allowNull: false,
+     unique: true
+    } 
     },
   {
     hooks: {
