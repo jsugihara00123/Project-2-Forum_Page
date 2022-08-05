@@ -15,12 +15,12 @@
     <h1 ><a id="breddit" href="/">Breddit</a></h1>
     <img src="/images/breddit.png" alt="breddit image" id="icon">
 
-    {{!-- {{#if logged_in}} --}}
+    {{#if logged_in}}
     <nav>
       <a class="btn btn-primary" id="createTopic" href="/topicCreation">Create Topic</a>
       <button class="btn btn-primary" id="logout">logout</button>
     </nav>
-    {{!-- {{/if}} --}}
+    {{/if}}
   </header>
   <main class="container container-fluid mt-5">
     {{{ body }}}
@@ -29,9 +29,9 @@
       
   </footer>
 
-  {{!-- {{#if logged_in}} --}}
+  {{#if logged_in}}
   <script src="/js/logout.js"></script>
-  {{!-- {{/if}} --}}
+  {{/if}}
   
 </body>
 

@@ -45,6 +45,10 @@ header {
 
 
 }
+#logout:hover{
+  
+  text-decoration: underline;
+}
 
 hr {
   box-sizing: content-box;

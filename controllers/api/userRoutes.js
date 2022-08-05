@@ -29,10 +29,10 @@ router.post('/login', async (req, res) => {
                 // res.status(200).json({ token });
 
                 req.session.save(() => {
-                req.session.user_id = userData.id;
-                req.session.logged_in = true;
-                //res.json({ user: userData, message: 'You are now logged in!' });
-                console.log("logged in: " + req.session.logged_in)
+                    req.session.user_id = userData.id;
+                    req.session.logged_in = true;
+                    res.json({ user: userData, message: 'You are now logged in!' });
+                    console.log("logged in: " + req.session.logged_in)
                  })
 
                 
@@ -46,11 +46,52 @@ router.post('/login', async (req, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
+    // try {
+    //     // Find the user who matches the posted e-mail address
+    //     const userData = await user.findOne({ where: { username: req.body.username } });
+    
+    //     if (!userData) {
+    //         console.log("can't find user!")
+
+    //       res
+    //         .status(400)
+    //         .json({ message: 'Incorrect email or password, please try again' });
+    //       return;
+    //     }
+    
+    //     // Verify the posted password with the password store in the database
+    //     const validPassword = await userData.checkPassword(req.body.password);
+        
+    
+    //     if (!validPassword) {
+    //         console.log("invalide password! ")
+    //       res
+    //         .status(400)
+    //         .json({ message: 'Incorrect email or password, please try again' });
+    //       return;
+    //     }
+    
+    //     // Create session variables based on the logged in user
+    //     req.session.save(() => {
+    //         console.log("userData.id: " + userData.id)
+
+    //       req.session.user_id = userData.id;
+    //       req.session.logged_in = true;
+    //       console.log("req.session.user_id: " + req.session.user_id)
+          
+    //       res.json({ user: userData, message: 'You are now logged in!' });
+    //     });
+    
+    //   } catch (err) {
+    //     console.log("error 400", err )
+
+    //     res.status(400).json(err);
+    //   }
 });
 
 
 //Router API Endpoint /users/logout to logout a user and return the user object for logout and end the session for the user
-router.get('/logout', async (req, res) => {
+router.post('/logout', async (req, res) => {
     try {
         const userData = await user.findOne({
             where: {
@@ -62,6 +103,14 @@ router.get('/logout', async (req, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
+    // if (req.session.logged_in) {
+    //     // Remove the session variables
+    //     req.session.destroy(() => {
+    //       res.status(204).end();
+    //     });
+    //   } else {
+    //     res.status(404).end();
+    //   }
 });
 
 //Router API Endpoint /users/:id to get a user and return the user object for the user
