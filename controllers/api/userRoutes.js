@@ -18,13 +18,25 @@ router.post('/register', async (req, res) => {
 
 //Router API Endpoint /users/login which takes in a username and password and uses bcrypt.compare to verify the password and returns a token if the user is found and the password is correct
 router.post('/login', async (req, res) => {
+    console.log('username' + req.body.username)
     try {
         const userData = await user.findOne({ where: { username: req.body.username } });
         if (userData) {
-            const isPasswordValid = await userData.comparePassword(req.body.password);
+            const isPasswordValid = await userData.checkPassword(req.body.password);
             if (isPasswordValid) {
-                const token = userData.generateToken();
-                res.status(200).json({ token });
+                console.log("passoword valid")
+                // const token = userData.generateToken();
+                // res.status(200).json({ token });
+
+                req.session.save(() => {
+                req.session.user_id = userData.id;
+                req.session.logged_in = true;
+                //res.json({ user: userData, message: 'You are now logged in!' });
+                console.log("logged in: " + req.session.logged_in)
+                 })
+
+                
+             
             } else {
                 res.status(401).json({ error: 'Invalid password' });
             }
@@ -35,6 +47,7 @@ router.post('/login', async (req, res) => {
         res.status(500).json(err);
     }
 });
+
 
 //Router API Endpoint /users/logout to logout a user and return the user object for logout and end the session for the user
 router.get('/logout', async (req, res) => {
