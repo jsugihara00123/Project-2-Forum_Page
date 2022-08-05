@@ -37,6 +37,7 @@ router.put('/new_topic', async (req, res) => {
         const userData = await User.findOne({ where: { id: req.session.user_id } });
         const topicData = await Topic.create({
         title: req.body.title,
+        body: req.body.body,
         description: req.body.description,
         created_by: userData.id,
         });
