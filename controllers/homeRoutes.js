@@ -1,6 +1,7 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { User } = require('../models/');
 const withAuth = require('../utils/auth');
+
 
 
   // router.get('/', (req, res) => {
@@ -14,12 +15,14 @@ router.get('/', withAuth, async (req, res) => {
       attributes: { exclude: ['password'] },
       order: [['username', 'ASC']],
     });
+
     // const userData = await User.findAll({where: { username: req.body.username }})
     
     // .then(users => console.log(users));
 
    // const userData = await user.findOne({ where: { username: req.body.username } });
 
+    
 
 
     const users = userData.map((project) => project.get({ plain: true }));
