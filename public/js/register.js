@@ -9,53 +9,53 @@ const registerUser = async (event) => {
 
 
   if(password1 === password2){
-    var match = true;
+    // var match = true;
     password = password1;
     console.log('password successfuly set')
 
+  
+    if (username) {
+      const newUser = await fetch('/api/user/register', {
+        method: 'POST',
+        body: JSON.stringify({ username, password, email }),
+        headers: { 'Content-Type': 'application/json' },
+      })
+
+      console.log('++++++++++++++++' + username + password + email)
+
+      if (!newUser.ok) {
+        // var unique = true;
+        document.location.replace('/login');
+      } else {
+        alert("Username Already Exists!")
+      }
+
+      // if(password1 === password2){
+      //   var match = true;
+      //   console.log('passwords match! ')
+
+      // }else {
+      //   alert("passwords don't match!")
+      // }
+
+      // if (match) {
+      //   const newUser = await fetch('/api/user/register', {
+      //     method: 'POST',
+      //     body: JSON.stringify({username, password ,email }),
+      //     headers: { 'Content-Type': 'application/json' },
+      //   })
+        
+      //   if (newUser.ok) {
+      //     alert("You have successfully registered")
+      //     document.location.replace('/login');
+      //   }
+      // }
+    }
   }else {
     alert("passwords don't match!")
   }
 
-
-  // if (username) {
-  //   const response = await fetch('/api/user/login', {
-  //     method: 'POST',
-  //     body: JSON.stringify({ username, password }),
-  //     headers: { 'Content-Type': 'application/json' },
-  //   })
-
-    // if (!response.ok) {
-    //   var unique = true;
-    // } else {
-    //   alert("Username Already Exists!")
-    // }
-
-    if(password1 === password2){
-      var match = true;
-      console.log('passwords match! ')
-
-    }else {
-      alert("passwords don't match!")
-    }
-
-
-
-    if (match) {
-      const newUser = await fetch('/api/user/register', {
-        method: 'POST',
-        body: JSON.stringify({username, password ,email }),
-        headers: { 'Content-Type': 'application/json' },
-      })
-      
-      if (newUser.ok) {
-        alert("You have successfully registered")
-        document.location.replace('/login');
-      }
-    }
-  }
-
-// };
+};
 
 document
   .querySelector('.register-form')
