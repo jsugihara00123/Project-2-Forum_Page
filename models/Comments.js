@@ -1,6 +1,5 @@
 //Build ow the comments model JS
 
-const comments = require('../models/comments');
 const users = require('../models/user');
 const topics = require('../models/topics');
 // const posts = require('../models/posts');

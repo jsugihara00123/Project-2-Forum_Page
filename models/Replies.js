@@ -1,5 +1,3 @@
-const comments = require('../models/comments');
-const replies = require('../models/replies');
 const users = require('../models/user');
 const topics = require('../models/topics');
 const sequelize = require('../config/connection');
