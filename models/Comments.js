@@ -1,7 +1,7 @@
 //Build ow the comments model JS
 
-const users = require('../models/user');
-const topics = require('../models/topics');
+// const Users = require('./User');
+// const topics = require('./topics');
 // const posts = require('../models/posts');
 const sequelize = require('../config/connection');
 var DataTypes = require('sequelize/lib/data-types');

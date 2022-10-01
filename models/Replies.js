@@ -1,5 +1,5 @@
-const users = require('../models/user');
-const topics = require('../models/topics');
+// const users = require('./User');
+// const topics = require('./Topics');
 const sequelize = require('../config/connection');
 var DataTypes = require('sequelize/lib/data-types');
 
